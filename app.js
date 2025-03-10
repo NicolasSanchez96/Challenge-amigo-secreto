@@ -1,31 +1,63 @@
-// El principal objetivo de este desafío es fortalecer tus habilidades en lógica de programación. Aquí deberás desarrollar la lógica para resolver el problema.
-
+// Array para almacenar los nombres 
 let amigos = [];
 
-// Función para agregar un amigo a la lista
+
+// Función para agregar un nombre a la lista
 function agregarAmigo() {
-    const nombre = nameInput.value.trim();  
-    
-    // Validación: Asegurarse de que el nombre no esté vacío
-    if (nombre === "") {
-        alert("Por favor, inserte un nombre.");  // Mostrar alerta si el campo está vacío
+    // Capturar el valor del campo de entrada
+    const inputAmigo = document.getElementById("amigo");  
+    const nombreAmigo = inputAmigo.value.trim();  // Eliminar espacios en blanco
+
+    // Validar la entrada
+    if (nombreAmigo === "") {
+        alert("Por favor, inserte un nombre.");
         return;  // Detener la ejecución si el campo está vacío
     }
+    // Actualizar el array 
+    amigos.push(nombreAmigo);
 
-    amigos.push(nombre);  // Agregar el nombre al array de amigos
+    // Limpiar el campo de entrada
+    inputAmigo.value = "";
 
-    // Crear un nuevo elemento de lista y agregar el nombre
-    const listItem = document.createElement("li");
-    listItem.textContent = nombre;  // Asignar el nombre al contenido de la lista
-    nameList.appendChild(listItem);  // Añadir el <li> a la lista visible en la página
-
-    // Limpiar el campo de entrada para un nuevo nombre
-    nameInput.value = "";  // Restablecer el campo de texto a una cadena vacía
+    // Mostrar la lista actualizada 
+    mostrarAmigos();
 }
 
-// Obtener el botón y el campo de texto
-const addButton = document.getElementById("addButton");
-const nameInput = document.getElementById("nameInput");
 
-// Agregar el evento para que al hacer clic en el botón "Adicionar" se ejecute la función
-addButton.addEventListener("click", agregarAmigo);
+
+// Función para mostrar los amigos en el HTML
+function mostrarAmigos() {
+    // Obtener el elemento donde vamos a mostrar la lista 
+    const listaAmigos = document.getElementById("listaAmigos");
+
+    // Limpiar la lista antes de agregar los nuevos elementos
+    listaAmigos.innerHTML = "";
+
+    // Iterar sobre el array 'amigos' y crear un <li> para cada nombre
+    for (let i = 0; i < amigos.length; i++) {
+        const listItem = document.createElement("li");  // Crear un nuevo <li>
+        listItem.textContent = amigos[i];  // Asignar el nombre del amigo como texto
+        listaAmigos.appendChild(listItem);  // Agregar el <li> al <ul> en el HTML
+    }
+}
+
+
+
+// Función para sortear un amigo secreto
+function sortearAmigo() {
+    // Validar que haya al menos 2 nombres en la lista
+    if (amigos.length < 2) {
+        alert("Debe haber al menos 2 amigos para sortear.");
+        return;  // Detener la ejecución si no hay suficientes nombres
+    }
+
+    // Generar un índice aleatorio 
+    const indiceAleatorio = Math.floor(Math.random() * amigos.length);
+
+    // Obtener el nombre sorteado utilizando aleatoriamente
+    const amigoSorteado = amigos[indiceAleatorio];
+
+    // Mostrar el resultado en el HTML
+    const resultado = document.getElementById("resultado");
+    resultado.innerHTML = `El amigo secreto sorteado es: ${amigoSorteado}`;
+}
