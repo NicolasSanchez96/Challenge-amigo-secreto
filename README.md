@@ -18,3 +18,14 @@ Este proyecto tiene como objetivo implementar una aplicación de amigo secreto d
    Si deseas probar el proyecto en tu máquina local, primero clona el repositorio:
    ```bash
    git clone https://github.com/tu-usuario/amigo-secreto.git
+
+2. Abre el archivo index.html en tu navegador.
+
+3. Usa el campo de entrada para agregar nombres a la lista de amigos y haz clic en el botón "Agregar" para añadirlo.
+
+4. Haz clic en el botón "Sorteo" para seleccionar aleatoriamente un amigo de la lista.
+
+## Tecnologías Utilizadas
+-HTML
+-CSS
+-JavaScript   
